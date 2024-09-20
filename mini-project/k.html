@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleet Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #ff9a8b, #ff6a00); /* Warm gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff; /* White text color for contrast */
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(243, 239, 239, 0.9); /* Slightly opaque white background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(248, 247, 247, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+        }
+
+        p {
+            color: rgb(8, 0, 0);
+            font-weight: bold;
+        }
+
+
+        .form-field {
+            margin-bottom: 15px;
+        }
+
+        .form-field input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .form-button {
+            background-color: lightblue;
+            color: white;
+            font-size: 16px;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-button:hover {
+            background-color: #3b5998;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        /* Role Selection Styling */
+        .role-options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Spacing between buttons */
+        }
+
+        .role-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, #ff7a18, #ff0084); /* Gradient effect */
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .role-button img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .role-button:hover {
+            transform: translateY(-3px); /* Lift effect on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .role-button:active {
+            transform: translateY(0); /* Press down effect */
+            box-shadow: none;
+        }
+
+        .role-options .role-button:nth-child(1) {
+            background: linear-gradient(90deg, #36D1DC, #5B86E5); /* Different color for each role */
+        }
+
+        .role-options .role-button:nth-child(2) {
+            background: linear-gradient(90deg, #FF512F, #DD2476);
+        }
+
+        .role-options .role-button:nth-child(3) {
+            background: linear-gradient(90deg, #16A085, #F4D03F);
+        }
+
+        /* Welcome Page Styling */
+        .welcome-container {
+            display: none; /* Initially hidden */
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9); /* Slightly opaque white background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .welcome-button {
+            background-color: lightblue;
+            color: white;
+            font-size: 16px;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .welcome-button:hover {
+            background-color: #3b5998;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WELCOME PAGE -->
+    <div class="welcome-container" id="welcomePage">
+        <h1>Welcome to the Fleet Management System</h1>
+        <p>Please click the button below to continue to the login page.</p>
+        <button class="welcome-button" onclick="showLoginPage()">Go to Login</button>
+    </div>
+
+    <!-- LOGIN PAGE -->
+    <div class="container" id="loginPage" style="display: none;">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <div class="form-field">
+                <input type="text" id="login-email" placeholder="Email">
+            </div>
+            <div class="form-field">
+                <input type="password" id="login-password" placeholder="Password">
+            </div>
+            <div class="form-field">
+                <button type="submit" class="form-button">Login</button>
+            </div>
+        </form>
+        <div class="form-field">
+            <button class="form-button" id="signupBtn" onclick="showSignupPage()">Sign Up</button>
+        </div>
+        <div class="error" id="loginError"></div>
+    </div>
+
+    <!-- SIGNUP PAGE -->
+    <div class="container" id="signupPage" style="display: none;">
+        <h1>Sign Up</h1>
+        <form id="signupForm">
+            <div class="form-field">
+                <input type="text" id="signup-firstname" placeholder="First Name">
+            </div>
+            <div class="form-field">
+                <input type="text" id="signup-lastname" placeholder="Last Name">
+            </div>
+            <div class="form-field">
+                <input type="date" id="signup-dob" placeholder="Date of Birth">
+            </div>
+            <div class="form-field">
+                <input type="email" id="signup-email" placeholder="Email">
+            </div>
+            <div class="form-field">
+                <input type="password" id="signup-password" placeholder="Password">
+            </div>
+            <div class="form-field">
+                <button type="submit" class="form-button" onclick="showLoginPage()">Continue</button>
+            </div>
+        </form>
+        <div class="error" id="signupError"></div>
+    </div>
+
+    <!-- ROLE SELECTION PAGE -->
+    <div class="container" id="rolePage" style="display: none;">
+        <h1>Choose Role</h1>
+        <div class="role-options">
+            <button class="role-button" onclick="selectRole('Students')">
+                <img src="student.png" alt="Students"> Students
+            </button>
+            <button class="role-button" onclick="selectRole('Administrator')">
+                <img src="administrator.png" alt="Administrator"> Administrator
+            </button>
+            <button class="role-button" onclick="selectRole('Mess Coordinator')">
+                <img src="mess_coordinator.png" alt="Mess Coordinator"> Mess Coordinator
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Show the welcome page on load
+        document.getElementById('welcomePage').style.display = 'block';
+
+        function showLoginPage() {
+            document.getElementById('welcomePage').style.display = 'none';
+            document.getElementById('signupPage').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
+        }
+
+        function showSignupPage() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('signupPage').style.display = 'block';
+        }
+
+        // Switch between pages
+        const loginPage = document.getElementById('loginPage');
+        const signupPage = document.getElementById('signupPage');
+        const rolePage = document.getElementById('rolePage');
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            console.log('Entered Email:', email);  // For debugging
+            console.log('Entered Password:', password);  // For debugging
+
+            if (email === 'test@example.com' && password === 'password') {
+                loginPage.style.display = 'none';
+                rolePage.style.display = 'block';
+            } else {
+                document.getElementById('loginError').textContent = 'Invalid login credentials.';
+            }
+        });
+
+        // Sign up form submission
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const firstname = document.getElementById('signup-firstname').value;
+            const lastname = document.getElementById('signup-lastname').value;
+            const dob = document.getElementById('signup-dob').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            console.log('Signup Details:', firstname, lastname, dob, email, password);  // For debugging
+
+            if (firstname && lastname && dob && email && password) {
+                signupPage.style.display = 'none';
+                loginPage.style.display = 'block';
+            } else {
+                document.getElementById('signupError').textContent = 'Please fill all the fields.';
+            }
+        });
+
+        function selectRole(role) {
+            alert('You selected: ' + role);
+        }
+    </script>
+
+</body>
+</html>

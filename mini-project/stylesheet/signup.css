@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.background-image {
+    position: absolute; /* Use absolute positioning */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-image: url('2.png'); /* Reference to the image */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Cover the entire area */
+    z-index: -1; /* Ensure it's behind other content */
+}
+
+.container {
+    background-color: rgba(225, 231, 231, 0.8);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 5px;
+    transition: color 0.3s ease, transform 0.3s ease; /* Add smooth transition effects */
+}
+h2:hover {
+    color: orangered; /* Change to your desired color */
+    transform: scale(1.05); /* Slightly enlarge the text */
+}
+p {
+    text-align: center;
+    color: gray;
+    margin-bottom: 30px;
+}
+
+label {
+    font-size: 14px;
+    margin: 5px 0;
+    display: block;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.continue-btn {
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(40, 42, 201);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.continue-btn:hover {
+    background-color: #00cc00;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: black;
+    
+}
+
+.login-link a {
+    color: gray;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.terms {
+    text-align: center;
+    font-size: 12px;
+    color: gray;
+    margin-top: 20px;
+}
+
+.terms a {
+    color: blue;
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}

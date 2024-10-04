@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    
+    <link rel="stylesheet" href="stylesheet/signup.css">
+
+</head>
+<body>
+    <img class="background-image" src="j.jpg" alt="jnecPIc">
+    <div class="container">
+        <h2>Create Account</h2>
+        <p>Step 1 of 4</p>
+
+        <form onsubmit="event.preventDefault();window.location.href='birthday.html';">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="first-name" placeholder="Enter your first name">
+
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" name="surname" placeholder="Enter your surname">
+
+           
+            <p><a href="login.html">Already have an account? </a></p>
+            
+
+            <button type="submit" class="continue-btn">Continue</button>
+        </form>
+
+        <div class="terms">
+            <p>By tapping 'Continue', you acknowledge that you have read the <a href="#">privacy policy</a> and agree to the <a href="#">Terms of service</a>.</p>
+        </div>
+    </div>
+</body>
+</html>
